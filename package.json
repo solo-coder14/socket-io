@@ -7,7 +7,7 @@
   "client": "cd Frontend && npm run dev",
   "build": "cd Frontend && npm run build",
   "install-server": "cd Backend && npm install",
-  "install-client": "cd Frontend && npm install",
+  "install-client": "cd Frontend && npm install --include=dev",
   "start": "cd Backend && npm start",
 
   "render-build": "npm run install-client && npm run build && npm run install-server"
