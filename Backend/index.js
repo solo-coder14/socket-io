@@ -24,8 +24,10 @@ app.use(express.json());
 app.use(cors()); // You imported cors but didn't use it
 
 // database connection
+// Replace your mongoose connection with this:
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/testing";
 mongoose
-  .connect("mongodb://localhost:27017/testing")
+  .connect(MONGODB_URI)
   .then(() => console.log("database connection successful!"))
   .catch((err) => console.log(err));
 

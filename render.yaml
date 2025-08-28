@@ -1,10 +1,14 @@
 services:
   - type: web
-    name: fullstack-socket-app
+    name: fullstack-app
     env: node
     buildCommand: npm run render-build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: mongodb-atlas
+          property: mongodb+srv://woafi:gP4Dx6e4ZekH3Nf@cluster0.re6ax.mongodb.net/?retryWrites=true&w=majority
     plan: free
