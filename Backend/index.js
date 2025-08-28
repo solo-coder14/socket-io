@@ -34,14 +34,12 @@ mongoose
 app.use("/products", productsRouter);
 
 // Serve static files from React build in production
-if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../Frontend/dist')));
   
   // Handle React routing, return all requests to React app
-  app.get('*', (req, res) => {
+  app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../Frontend/dist', 'index.html'));
   });
-}
 
 // //Backend Check
 // app.get("/", (req, res) => {
