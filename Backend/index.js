@@ -21,10 +21,9 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors()); // You imported cors but didn't use it
+app.use(cors()); 
 
 // database connection
-// Replace your mongoose connection with this:
 const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/testing";
 mongoose
   .connect(MONGODB_URI)
