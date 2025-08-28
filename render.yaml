@@ -10,5 +10,5 @@ services:
       - key: MONGODB_URI
         fromDatabase:
           name: mongodb-atlas
-          property: mongodb+srv://woafi:gP4Dx6e4ZekH3Nf@cluster0.re6ax.mongodb.net/?retryWrites=true&w=majority
+          property: connectionString
     plan: free
