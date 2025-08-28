@@ -10,7 +10,7 @@
   "install-client": "cd Frontend && npm install",
   "start": "cd Backend && npm start",
 
-  "render-build": "npm install && npm run install-client && npm run build && npm run install-server"
+  "render-build": "npm run install-client && npm run build && npm run install-server"
 },
   "devDependencies": {
     "concurrently": "^8.2.2"
