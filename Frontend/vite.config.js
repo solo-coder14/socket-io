@@ -2,21 +2,20 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
-// https://vite.dev/config/
+const BACKEND_URL = process.env.BACKEND_URL || 'https://socket-io-2dru.onrender.com'
+
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 
   server: {
     port: 3000,
     proxy: {
-      // Proxy API requests to the Express server
       '/products': {
-        target: 'http://localhost:5000',
+        target: BACKEND_URL,
         changeOrigin: true,
       },
-      // Proxy Socket.io requests to the Express server
       '/socket.io': {
-        target: 'http://localhost:5000',
+        target: BACKEND_URL,
         changeOrigin: true,
         ws: true,
       }
