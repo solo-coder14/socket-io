@@ -22,7 +22,13 @@ async function createItem(req, res) {
         const newProduct = new Product({
             name: req.body.item
         });
-        await newProduct.save();
+
+        const result = await newProduct.save();
+
+        global.io.emit("textObject", {
+            data: result
+        });
+        
         res.status(200).json({
             msg: "success",
         });

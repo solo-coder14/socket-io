@@ -4,7 +4,7 @@
   "scripts": {
   "dev": "concurrently \"npm run server\" \"npm run client\"",
   "server": "cd Backend && npm run dev",
-  "client": "cd Frontend && npm run dev",
+  "client": "cd Frontend && pnpm run dev",
   "build": "cd Frontend && npm run build",
   "install-server": "cd Backend && npm install",
   "install-client": "cd Frontend && npm install --include=dev",

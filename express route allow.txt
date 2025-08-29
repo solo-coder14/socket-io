@@ -1,0 +1,56 @@
+// Serve React in production
+const frontendPath = path.join(__dirname, "../Frontend/dist");
+app.use(express.static(frontendPath));
+
+// API routes
+app.use("/products", productsRouter);
+
+// Catch-all for React Router - BUT EXCLUDE API ROUTES
+app.get(/^\/(?!api|products).*/, (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+// Serve static files
+app.use(express.static(frontendPath));
+
+// API routes
+app.use("/products", productsRouter);
+
+// Specific routes that should serve index.html
+app.get(["/", "/about", "/contact", "/products/*"], (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+// More specific catch-all (optional)
+app.get(/^\/[^.]*$/, (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+// Serve static files
+app.use(express.static(frontendPath));
+
+// API routes
+app.use("/api/products", productsRouter); // Note: added /api prefix
+
+// Catch-all for React Router - but exclude API routes and files with extensions
+app.get(/^((?!\.|api).)*$/, (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
+
+// In your server.js
+const isProduction = process.env.NODE_ENV === 'production';
+
+if (isProduction) {
+  app.use(express.static(frontendPath));
+  
+  app.get(/^((?!\.|api).)*$/, (req, res) => {
+    res.sendFile(path.join(frontendPath, "index.html"));
+  });
+}
+
+/^((?!\.|api|auth|admin).)*$/
+
+/^((?!\.|\/api).)*$/  // Excludes routes starting with /api
+
+/^[^.]*$/  // No dots allowed anywhere
