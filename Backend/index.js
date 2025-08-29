@@ -12,10 +12,8 @@ const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
     origin: process.env.NODE_ENV === 'production'
-      ? "http://localhost:5000"
-      : "http://localhost:3000",
-    methods: ["GET", "POST"],
-    credentials: true
+      ? "https://socket-io-2dru.onrender.com"
+      : "http://localhost:3000"
   }
 });
 global.io = io;
@@ -36,7 +34,6 @@ app.use("/products", productsRouter);
 
 // Serve static files from React build in production
 if (process.env.NODE_ENV === 'production') {
-  console.log("woafi")
   app.use(express.static(path.join(__dirname, '../Frontend/dist')));
 
   // Handle React routing, return all requests to React app
