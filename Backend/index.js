@@ -12,7 +12,7 @@ const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
     origin: process.env.NODE_ENV === 'production'
-      ? "https://socket-io-2dru.onrender.com"
+      ? window.location.origin
       : "http://localhost:3000"
   }
 });
