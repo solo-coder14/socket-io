@@ -40,6 +40,10 @@ if (process.env.NODE_ENV === 'production') {
   app.get(/.*/, (req, res) => {
     res.sendFile(path.join(__dirname, '../Frontend/dist', 'index.html'));
   });
+} else {
+  app.get("/", (req, res) => {
+    return res.status(200).send("Server is running");
+  });
 }
 
 // Server listening

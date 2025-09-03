@@ -9,7 +9,7 @@ function Text() {
   useEffect(() => {
     handleTextObject();
 
-    const socketUrl = process.env.NODE_ENV === 'production' 
+    const socketUrl = import.meta.env.MODE === 'production'
     ? window.location.origin // Connect to same domain in production
     : 'http://localhost:5000'; // Connect to backend server in development
 
@@ -30,8 +30,22 @@ function Text() {
   }, [])
 
   useEffect(() => {
-    console.log("textObject State change")
+    console.log(textObject);
   }, [textObject])
+
+  // useEffect(() => {
+  //   console.log("Rendering....");
+  // },)
+
+  useEffect(() => {
+  if (textObject.length > 0) {
+    if(!(textObject[textObject.length - 1].state)){
+      setTextObject(prev =>
+      prev.map(item => ({ ...item, state: true }))
+    );
+    }
+  }
+}, [textObject]);
 
   const handleTextObject = async () => {
     try {
